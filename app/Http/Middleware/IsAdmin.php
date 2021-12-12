@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class IsAdmin
+{
+    public function handle($request, Closure $next)
+    {
+        if (!auth()->check() || auth()->user()->email != 'admin@admin.com') {
+            return redirect('/profile/' . auth()->user()->id);
+        }
+
+        return $next($request);
+    }
+}
