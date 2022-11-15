@@ -46,7 +46,9 @@ Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'sh
     return redirect()->route::get('/', [App\Http\Controllers\PostsController::class, 'index']);
 });*/
 
-Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');;
+Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');
+
+Route::get('/test', [App\Http\Controllers\PostsController::class, 'test'])->name('posts.test');
 
 Route::post('follow/{user}', [App\Http\Controllers\FollowsController::class, 'store']);
 

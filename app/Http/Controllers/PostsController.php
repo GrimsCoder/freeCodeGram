@@ -29,6 +29,20 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
     }
 
+    public function test(Request $request, User $user, Post $post){
+        
+        $userMain = auth()->user()->id;
+
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+       
+   
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->simplePaginate(5);
+        
+        
+
+        return view('posts.test', compact('posts'));
+    }
+
 
     public function create(){
         return view('posts.create');
